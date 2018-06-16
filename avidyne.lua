@@ -1,10 +1,12 @@
 -- Datarefs for Avidyne PFD
---
+-- PFD Left side buttons
 DataRef( "lft_hil", "sim/cockpit/avidyne/lft_hil", readonly)
+-- PFD right side buttons
 DataRef( "rgt_hil", "sim/cockpit/avidyne/rgt_hil", readonly)
 DataRef( "alt_knob", "sim/cockpit/avidyne/alt_hil", readonly)
 DataRef( "autopilot_source", "sim/cockpit/avidyne/src", readonly)
---DataRef( "src3_knob", "sim/cockpit/avidyne/src[3]", readonly)
+-- Nav button
+--DataRef( "nav_button", "sim/cockpit/avidyne/src[3]", readonly, 3)
 DataRef( "hsi_mode", "sim/cockpit/avidyne/hsi_mode", readonly)
 DataRef( "heading_bug", "sim/cockpit2/autopilot/heading_dial_deg_mag_pilot", writable )
 DataRef( "altitude_bug", "sim/cockpit2/autopilot/altitude_dial_ft", writable )
@@ -14,9 +16,7 @@ DataRef( "barometer_setting", "sim/cockpit/misc/barometer_setting", readonly )
 DataRef( "hsi_course2", "sim/cockpit2/radios/actuators/hsi_obs_deg_mag_pilot", writable )
 
 -- PFD Left side buttons
--- Nav button
--- sets: lft_hil=0
--- then src[3] to
+-- Nav button, when selected sets lft_hil=0 then src[3] to:
 -- [0,1,3] for NAV1
 -- [1,1,3] for NAV2
 -- [4,1,3] for GPS1
@@ -67,11 +67,11 @@ DataRef( "hsi_course2", "sim/cockpit2/radios/actuators/hsi_obs_deg_mag_pilot", w
 -- debug output
 function check_dataref()
     x, y = MOUSE_X, MOUSE_Y
-    y = bubble(x, y, 'left button selection ' .. lft_hil )
     y = bubble(x, y, 'right button selection ' .. rgt_hil )
-    y = bubble(x, y, 'alt knob ' .. alt_knob )
-    y = bubble(x, y, 'AP source selection ' .. autopilot_source )
-    y = bubble(x, y, 'hsi selection ' .. hsi_mode )
+    y = bubble(x, y, 'heading bug: ' .. heading_bug )
+    y = bubble(x, y, 'altitude bug: ' .. altitude_bug )
+    y = bubble(x, y, 'vertical speed: ' .. vertical_speed )
+    y = bubble(x, y, 'altimeter: ' .. barometer_setting )
     y = bubble(x, y, 'left knob value ' .. pfd_lk )
     y = bubble(x, y, 'right knob value ' .. pfd_rk )
 end
